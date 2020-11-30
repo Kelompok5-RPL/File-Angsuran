@@ -1,5 +1,6 @@
 //Kelompok 5 RPL
 // Rekayasa Perangkat Lunak
+// Hitung Angsuran Hutang
 
 import java.util.*;
 import java.text.DecimalFormat;
