@@ -5,6 +5,10 @@ import java.util.*;
 import java.text.DecimalFormat;
 import java.io.*;
 
+* @author Kelompok 5
+* @version 1.0
+* @since 01-12-2020
+
 public class HitungAngsuranHutang{
 	public static void main(String[] args) {
 		
