@@ -1,14 +1,10 @@
-//Kelompok 5 RPL
-// Rekayasa Perangkat Lunak
-// Hitung Angsuran Hutang
-
 import java.util.*;
 import java.text.DecimalFormat;
 import java.io.*;
 
-* @author Kelompok 5
-* @version 1.0
-* @since 01-12-2020
+//* @author Kelompok 5
+//* @version 1.0
+//* @since 01-12-2020
 
 public class HitungAngsuranHutang{
 	public static void main(String[] args) {
@@ -37,63 +33,151 @@ public class HitungAngsuranHutang{
 	  		System.out.println();
 	  		System.out.println("INPUT DATA SESUAI KTP");
 	  		System.out.println("____________________________________________________________________");
-	  		System.out.print("NIK               = ");
-	  		nik = in.nextLine();
+	  		do{
+		  		System.out.print("NIK               = ");
+	  			nik = in.next();
+	  			in.nextLine();
+	  			if (!nik.matches("[0-9]+")) {
+	  				System.out.println("Inputan harus sesuai");
+	  			}
+		  		String tampung = nik;
+	  		}while(!nik.matches("[0-9]+"));
+	  		
 	  		do{
 		  		System.out.print("Nama              = ");
 		  		nama = in.nextLine();
-	  		}while(nama.equals(""));
-	  		System.out.print("Tempat/tgl Lahir  = ");
-	  		tglLahir = in.nextLine();
-	  		System.out.print("Alamat            = ");
-	  		alamat = in.nextLine();
-	  		System.out.print("Kelurahan         = ");
-	  		kel = in.nextLine();
-	  		System.out.print("Kecamatan         = ");
-	  		kec = in.nextLine();
-	  		System.out.print("Status            = ");
-	  		status = in.nextLine();
-	  		System.out.print("Pekerjaan         = ");
-	  		pekerjaan = in.nextLine();
+	  			if (!nama.matches("[A-Za-z\\s]+")) {
+	  				System.out.println("Inputan harus sesuai");
+	  			}
+		  		String tampung = nama;
+	  		}while(!nama.matches("[A-Za-z\\s]+"));
+	  		do{
+		  		System.out.print("Tempat/tgl Lahir  = ");
+	  			tglLahir = in.nextLine();
+	  			if (!tglLahir.matches("[A-Za-z0-9\\s-,]+")) {
+	  				System.out.println("Inputan harus sesuai");
+	  			}
+		  		String tampung = tglLahir;
+	  		}while(!tglLahir.matches("[A-Za-z0-9\\s-,]+"));
+	  		do{
+		  		System.out.print("Alamat            = ");
+	  			alamat = in.nextLine();
+	  			if (!alamat.matches("[A-Za-z\\s0-9.]+")) {
+	  				System.out.println("Inputan harus sesuai");
+	  			}
+		  		String tampung = alamat;
+	  		}while(!alamat.matches("[A-Za-z\\s0-9.]+"));
+	  		
+	  		do{
+		  		System.out.print("Kelurahan         = ");
+	  			kel = in.nextLine();
+	  			if (!kel.matches("[A-Za-z\\s]+")) {
+	  				System.out.println("Inputan harus sesuai");
+	  			}
+		  		String tampung = kel;
+	  		}while(!kel.matches("[A-Za-z\\s]+"));
+	  		
+	  		do{
+		  		System.out.print("Kecamatan         = ");
+	  			kec = in.nextLine();
+	  			if (!kec.matches("[A-Za-z\\s]+")) {
+	  				System.out.println("Inputan harus sesuai");
+	  			}
+		  		String tampung = kec;
+	  		}while(!kec.matches("[A-Za-z\\s]+"));
+	  		
+	  		do{
+		  		System.out.print("Status Perkawinan = ");
+	  			status = in.nextLine();
+	  			if (!status.matches("[A-Za-z\\s]+")) {
+	  				System.out.println("Inputan harus sesuai");
+	  			}
+		  		String tampung = status;
+	  		}while(!status.matches("[A-Za-z\\s]+"));
+	  		
+	  		do{
+		  		System.out.print("Pekerjaan         = ");
+	  			pekerjaan = in.nextLine();
+	  			if (!pekerjaan.matches("[A-Za-z\\s]+")) {
+	  				System.out.println("Inputan harus sesuai");
+	  			}
+		  		String tampung = pekerjaan;
+	  		}while(!pekerjaan.matches("[A-Za-z\\s]+"));
+	  		
 	  		System.out.println();
 	  		System.out.println();
 	  		System.out.println("DATA PEMINJAMAN");
 	  		System.out.println("____________________________________________________________________");
-	  		do{
-	  			System.out.print("Besar Pinjaman         = Rp. ");
-				hutang = in.nextInt();
-				if(hutang > 200000000 || hutang <= 0){
-					System.out.println("Maksimal Peminjaman Rp. 200000000");
-				}
-	  		}while(hutang > 200000000 || hutang <= 0);
-	  		do{
-	  			System.out.print("Lama Angsuran (bulan)  = ");
-				lama = in.nextInt();
-	  		}while(lama > 48 || lama <= 0);
+
+  			System.out.println("Maksimal Peminjaman Rp. 200000000");
+  			System.out.print("Besar Pinjaman         = Rp. ");
+			hutang = in.nextInt();
+			if (hutang > 200000000 || hutang <= 0) {
+				System.out.println("Maaf Tidak Menerima Besar Pinjaman Tersebut :)");
+				Terimakasih();
+				break;
+			}
+  			System.out.println("Maksimal Lama Angsuran 48 Bulan");
+  			System.out.print("Lama Angsuran (bulan)  = ");
+			lama = in.nextInt();
+			if (lama > 48 || lama <= 0) {
+				System.out.println("Maaf Tidak Menerima Lama Angsuran Tersebut :)");
+				Terimakasih();
+				break;
+			}
 			System.out.println();
 			System.out.println();
 	  		System.out.println("DATA SAUDARA TIDAK SERUMAH");
 	  		System.out.println("____________________________________________________________________");
-	  		System.out.print("Masukkan Nama Saudara  = ");
-	  		namaSaudara = in.nextLine();
-	  		in.nextLine();
-	  		System.out.print("Masukkan Alamat        = ");
-	  		alamatSaudara = in.nextLine();
+	  		do{
+		  		System.out.print("Masukkan Nama Saudara  = ");
+	  			namaSaudara = in.next();
+	  			in.nextLine();
+	  			if (!namaSaudara.matches("[A-Za-z\\s]+")) {
+	  				System.out.println("Inputan harus sesuai");
+	  			}
+		  		String tampung = namaSaudara;
+	  		}while(!namaSaudara.matches("[A-Za-z\\s]+"));
+	  		
+	  		do{
+		  		System.out.print("Masukkan Alamat        = ");
+	  			alamatSaudara = in.nextLine();
+	  			if (!alamatSaudara.matches("[A-Za-z\\s0-9./]+")) {
+	  				System.out.println("Inputan harus sesuai");
+	  			}
+		  		String tampung = alamatSaudara;
+	  		}while(!alamatSaudara.matches("[A-Za-z\\s0-9./]+"));
+	  		
 	  		System.out.println();
 	  		System.out.println();
 	  		System.out.println("NOMOR KARTU DEBIT");
 	  		System.out.println("____________________________________________________________________");
-	  		System.out.print("Bayar Dengan Debit (Y/N) = ");
-	  		cekDebit = in.nextLine();
+	  		System.out.println("Hanya Menerima Pembayaran Melalui Debit");
+	  		do{
+	  			System.out.print("Bayar Dengan Debit (Y/N) = ");
+	  			cekDebit = in.nextLine().toUpperCase();
+	  			if (!cekDebit.equals("Y") && !cekDebit.equals("N")) {
+	  				System.out.println("Masukkan Y/N");
+	  			}
+	  			String tampung = cekDebit;
+	  		}while(!cekDebit.equals("Y") && !cekDebit.equals("N"));
+	  		
 	  		if(cekDebit.toUpperCase().equals("Y")){
 	  			System.out.println("---------------------------------------------");
 	  			System.out.println("Nomor Pembayaran PT. YUHU 4637-01-010974-51-1");
 	  			System.out.println("---------------------------------------------");
-	  			System.out.print("Masukkan Nomor Kartu     = ");
-	  			debit = in.nextLine();
+	  			do{
+		  			System.out.print("Masukkan Nomor Kartu     = ");
+	  				debit = in.nextLine();
+	  				if (!debit.matches("[0-9]+")) {
+	  					System.out.println("Inputan harus sesuai");
+	  				}
+		  			String tampung = debit;
+	  			}while(!debit.matches("[0-9]+"));
+	  			
 	  		}
 	  		else{
-	  			System.out.println("Maaf Kami Hanya Menerima Melalui Debit :)");
+	  			System.out.println("Maaf Kami Hanya Menerima Pembayaran Melalui Debit :)");
 	  			Terimakasih();
 	  			break;
 	  		}
@@ -162,21 +246,35 @@ public class HitungAngsuranHutang{
 	   		System.out.println();
 
 	   		//Looping
-		    System.out.print("Apakah Data sudah benar dan setuju (Y/N) : ");
-		    tanya = in.next();
-
-		    if (tanya.equalsIgnoreCase("y")){
+	   		do{
+	  			System.out.print("Apakah Data sudah benar dan setuju (Y/N) : ");
+		    	tanya = in.next().toUpperCase();
+	  			if (!tanya.equals("Y") && !tanya.equals("N")) {
+	  				System.out.println("Masukkan Y/N");
+	  			}
+	  			String tampung = tanya;
+	  		}while(!tanya.equals("Y") && !tanya.equals("N"));
+	   		
+		    if (tanya.equals("Y")){
 		        Terimakasih();
 		        break;
 		    }
 		    else {
-		    	System.out.print("Apakah ingin di ulang (Y/N)              : ");
-	   			tanyalagi = in.next();
-	   			if (tanyalagi.equalsIgnoreCase("T")) {
+		    	do{
+		  			System.out.print("Apakah ingin di ulang (Y/N)              : ");
+	   				tanyalagi = in.next().toUpperCase();
+		  			if (!tanyalagi.equals("Y") && !tanyalagi.equals("N")) {
+		  				System.out.println("Masukkan Y/N");
+		  			}
+		  			String tampung = tanyalagi;
+		  		}while(!tanyalagi.equals("Y") && !tanyalagi.equals("N"));
+		    	
+	   			if (tanyalagi.equals("N")) {
 	   				Terimakasih();
+	   				break;
 	   			}
 		    }
-  		}while(!tanyalagi.toUpperCase().equals("T"));
+  		}while(tanyalagi.equals("Y"));
 	}
 	private static void Terimakasih(){  
 	    System.out.println();
