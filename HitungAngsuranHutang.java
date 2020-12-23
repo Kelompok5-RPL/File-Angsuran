@@ -13,14 +13,22 @@ public class HitungAngsuranHutang{
 		Scanner in = new Scanner(System.in);
 		//membuat dua angka di belakang koma
   		DecimalFormat digit = new DecimalFormat("0.00");
-		int lama;
+		int lama = 0;
 		String nama;
 		String namaSaudara;
 		String nik, tglLahir, alamat, kel, kec, status, pekerjaan, alamatSaudara, debit, tanya, cekDebit;
 		String tanyalagi = "";
-		double hutang, bunga, bunga1, angsur, sisa, bayar;
+		// double hutang, bunga, bunga1, angsur, sisa, bayar;
+		double hutang = 0;
+		double bunga = 0;
+		double bunga1 = 0;
+		double angsur = 0;
+		double sisa = 0;
+		double bayar = 0;
 		double total = 0;
 		double totbunga = 0;
+		boolean checking_digit = false;
+		boolean next_step = false;
 
 		System.out.println();
   		do{
@@ -37,11 +45,19 @@ public class HitungAngsuranHutang{
 		  		System.out.print("NIK               = ");
 	  			nik = in.next();
 	  			in.nextLine();
+	  			checking_digit = nik.length() < 16;
 	  			if (!nik.matches("[0-9]+")) {
-	  				System.out.println("Inputan harus sesuai");
-	  			}
+	  				next_step = true;
+	  				System.out.println("Inputan Invalid - Harus Angka");
+	  			}else if (checking_digit){
+	  				next_step = true;
+	  				System.out.println("Inputan Invalid - Harus 16 Digit Angka");
+
+	  			}else{
+	  			next_step = false;
 		  		String tampung = nik;
-	  		}while(!nik.matches("[0-9]+"));
+		  		}
+	  		}while(next_step);
 	  		
 	  		do{
 		  		System.out.print("Nama              = ");
@@ -62,11 +78,11 @@ public class HitungAngsuranHutang{
 	  		do{
 		  		System.out.print("Alamat            = ");
 	  			alamat = in.nextLine();
-	  			if (!alamat.matches("[A-Za-z\\s0-9.]+")) {
+	  			if (!alamat.matches("[A-Za-z0-9\\s.,/]+")) {
 	  				System.out.println("Inputan harus sesuai");
 	  			}
 		  		String tampung = alamat;
-	  		}while(!alamat.matches("[A-Za-z\\s0-9.]+"));
+	  		}while(!alamat.matches("[A-Za-z0-9\\s.,/]+"));
 	  		
 	  		do{
 		  		System.out.print("Kelurahan         = ");
@@ -111,20 +127,27 @@ public class HitungAngsuranHutang{
 
   			System.out.println("Maksimal Peminjaman Rp. 200000000");
   			System.out.print("Besar Pinjaman         = Rp. ");
-			hutang = in.nextInt();
-			if (hutang > 200000000 || hutang <= 0) {
-				System.out.println("Maaf Tidak Menerima Besar Pinjaman Tersebut :)");
+  			try{
+				hutang = in.nextInt();
+
+				if (hutang > 200000000 || hutang <= 0) {
+					System.out.println("Maaf Tidak Menerima Besar Pinjaman Tersebut :)");
+					Terimakasih();
+					break;
+				}
+	  			System.out.println("Maksimal Lama Angsuran 48 Bulan");
+	  			System.out.print("Lama Angsuran (bulan)  = ");
+				lama = in.nextInt();
+				if (lama > 48 || lama <= 0) {
+					System.out.println("Maaf Tidak Menerima Lama Angsuran Tersebut :)");
+					Terimakasih();
+					break;
+				}
+			} catch (Exception e){
+				System.out.println("\nInput Invalid - Input harus berupa Angka");
 				Terimakasih();
-				break;
-			}
-  			System.out.println("Maksimal Lama Angsuran 48 Bulan");
-  			System.out.print("Lama Angsuran (bulan)  = ");
-			lama = in.nextInt();
-			if (lama > 48 || lama <= 0) {
-				System.out.println("Maaf Tidak Menerima Lama Angsuran Tersebut :)");
-				Terimakasih();
-				break;
-			}
+  				break;
+  			}
 			System.out.println();
 			System.out.println();
 	  		System.out.println("DATA SAUDARA TIDAK SERUMAH");
@@ -142,11 +165,11 @@ public class HitungAngsuranHutang{
 	  		do{
 		  		System.out.print("Masukkan Alamat        = ");
 	  			alamatSaudara = in.nextLine();
-	  			if (!alamatSaudara.matches("[A-Za-z\\s0-9./]+")) {
+	  			if (!alamatSaudara.matches("[A-Za-z0-9\\s.,/]+")) {
 	  				System.out.println("Inputan harus sesuai");
 	  			}
 		  		String tampung = alamatSaudara;
-	  		}while(!alamatSaudara.matches("[A-Za-z\\s0-9./]+"));
+	  		}while(!alamatSaudara.matches("[A-Za-z0-9\\s.,/]+"));
 	  		
 	  		System.out.println();
 	  		System.out.println();
